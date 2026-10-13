@@ -1,3 +1,7 @@
+	section	.data
+__minus:	db	'-'
+
+	
 	section	.text
 	global	printRAX
 	extern	printDigit
@@ -5,8 +9,26 @@
 printRAX:
 	push	rax
 	push	rbx
+	push	rcx
 	push	rdx
 
+	;;  check if number is negative
+	cmp	rax, 0
+	jge	printPos
+	
+	;;  if it is negative, print a '-' sign
+	push	rax
+	mov	rax, 4
+	mov	rbx, 1
+	mov	rcx, __minus
+	mov	rdx, 1
+	int	0x80
+	pop	rax
+	
+	;;  and negate the number.
+	neg	rax
+
+printPos:	
 	mov	rcx, 0		; count of number of digits
 doDigit:
 	mov	rbx, 0xa
@@ -35,6 +57,7 @@ dumpDigits:
 
 	
 	pop 	rdx
+	pop	rcx
 	pop 	rbx
 	pop 	rax
 

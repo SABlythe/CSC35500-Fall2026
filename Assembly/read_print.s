@@ -16,7 +16,7 @@ _start:
 	int	0x80
 
 	mov	rax, 0x3
-	mov	rbx, 0x1
+	mov	rbx, 0x0
 	mov	rcx, buffer
 	mov	rdx, 100
 	int 	0x80

@@ -21,6 +21,11 @@ _start:
 	mov	rdx, 100
 	int 	0x80
 
+	mov	rdx, rax	; upon return from int, rax holds # chars
+	mov	rax, 4		
+	mov 	rbx, 1
+	mov	rcx, buffer
+	int	0x80
 
 	
 	mov	rax, 1

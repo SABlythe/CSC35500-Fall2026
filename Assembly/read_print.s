@@ -13,7 +13,7 @@ _start:
 	mov 	rbx, 1
 	mov	rcx, printMe
 	mov	rdx, cheeky - printMe
-	int	0x80
+	int	0x80		
 
 	mov	rax, 0x3
 	mov	rbx, 0x0
@@ -21,13 +21,15 @@ _start:
 	mov	rdx, 100
 	int 	0x80
 
-	mov	rdx, rax	; upon return from int, rax holds # chars
+	push	rax
+	;;mov	rdx, rax     upon return from int, rax holds # chars
 	mov	rax, 4		
 	mov 	rbx, 1
 	mov	rcx, buffer
+	pop	rdx
 	int	0x80
 
 	
 	mov	rax, 1
-	mov 	rbx, 17
+	mov 	rbx, 17 
 	int	0x80
